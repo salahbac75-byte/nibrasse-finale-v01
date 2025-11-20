@@ -11,38 +11,57 @@ def configure_gemini():
         genai.configure(api_key=settings.GEMINI_API_KEY)
         _gemini_configured = True
 
-def generate_answer(query: str, context: str) -> str:
+def generate_answer(query: str, context: str, metadatas: list = None) -> str:
     configure_gemini()
     model = genai.GenerativeModel(settings.GEMINI_CHAT_MODEL)
     
-    # Number each context chunk for reference
+    # Number each context chunk for reference with metadata
     context_chunks = context.split("\n\n---\n\n")
     numbered_context = ""
-    for i, chunk in enumerate(context_chunks, 1):
-        numbered_context += f"\n\n### [مصدر {i}]\n{chunk}\n"
+    source_titles = []
     
-    prompt = f"""أنت مساعد ذكي متخصص في تقديم إجابات احترافية ومنظمة بأسلوب أكاديمي.
+    for i, chunk in enumerate(context_chunks, 1):
+        # Extract title from metadata if available
+        if metadatas and i <= len(metadatas):
+            # Use filename and clean it up (remove extension and special chars)
+            filename = metadatas[i-1].get('filename', f'مصدر {i}')
+            # Remove .txt extension and clean up the title
+            title = filename.replace('.txt', '').replace('-', ' ').replace('_', ' ')
+            source_titles.append(title)
+            numbered_context += f"\n\n### [مصدر {i}: {title}]\n{chunk}\n"
+        else:
+            source_titles.append(f'مصدر {i}')
+            numbered_context += f"\n\n### [مصدر {i}]\n{chunk}\n"
 
-عند الإجابة على الأسئلة، اتبع هذا الهيكل بدقة:
+    
+    prompt = f"""أنت مساعد ذكي متخصص في تقديم إجابات دقيقة واحترافية بأسلوب أكاديمي.
 
-1. **المقدمة**: ابدأ بتمهيد قصير (2-3 أسطر) يضع السؤال في سياقه
-2. **الإجابة الرئيسية**: قدم إجابة شاملة ومنظمة في فقرات واضحة
-3. **الاستشهادات**: استخدم أرقام بين قوسين [1]، [2]، [3] للإشارة إلى المصادر
-4. **المراجع**: في النهاية، أدرج قائمة المراجع المرقمة بالتنسيق التالي:
+**تعليمات الإجابة:**
 
-**المراجع:**
-[1] [عنوان واضح من المصدر الأول]
-[2] [عنوان واضح من المصدر الثاني]
-...إلخ
+1. **ركّز على الدقة**: استخدم فقط المصادر الأكثر صلة بالسؤال
+2. **الاستشهاد الذكي**: 
+   - استشهد بمصدر واحد فقط إذا كان كافياً للإجابة
+   - استخدم مصادر متعددة فقط إذا كانت الإجابة تتطلب ذلك فعلاً
+   - ضع رقم المصدر [1] مباشرة بعد المعلومة المستقاة منه
 
-**قواعد مهمة:**
-- استخدم لغة عربية فصيحة واضحة
-- نظّم الإجابة في فقرات متماسكة (كل فقرة 3-4 أسطر)
-- استشهد بالمصادر في نهاية كل جملة أو فكرة رئيسية
-- في قسم المراجع، استخرج العنوان الفعلي من كل مصدر (ابحث عن "العنوان:" في النص)
-- إذا لم تجد عنواناً واضحاً، اكتب ملخصاً قصيراً للمصدر (10-15 كلمة)
-- لا تخترع معلومات غير موجودة في السياق
-- إذا لم تجد الإجابة في السياق، قل ذلك بوضوح
+3. **هيكل الإجابة**:
+   - مقدمة موجزة (سطر واحد)
+   - إجابة مباشرة ومنظمة في فقرات واضحة
+   - استشهادات دقيقة بعد كل معلومة
+   - قائمة مراجع في النهاية
+
+4. **قائمة المراجع**:
+   - اذكر فقط المصادر التي استخدمتها فعلياً في الإجابة
+   - استخدم العناوين الموجودة في رأس كل مصدر
+   - التنسيق: **المراجع:**
+     [1] عنوان المصدر الأول
+     [2] عنوان المصدر الثاني (إن وُجد)
+
+**قواعد صارمة:**
+- لا تخترع معلومات غير موجودة في المصادر
+- لا تستشهد بمصادر لم تستخدمها
+- إذا كان مصدر واحد كافياً، لا تستخدم مصادر إضافية
+- اكتب بلغة عربية فصيحة وواضحة
 
 **المصادر المتاحة:**
 {numbered_context}
@@ -50,8 +69,7 @@ def generate_answer(query: str, context: str) -> str:
 **السؤال:**
 {query}
 
-**الإجابة المطلوبة:**
-قدم إجابة احترافية منظمة مع استشهادات مرقمة ومراجع واضحة في الأسفل.
+**الإجابة:**
 """
     response = model.generate_content(prompt)
     return response.text
@@ -71,8 +89,8 @@ def calculate_relevance_score(query: str, document: str) -> float:
     return len(intersection) / len(union) if len(union) > 0 else 0.0
 
 def rag_pipeline(query: str):
-    # 1. Embed Query
-    query_embedding = get_embedding(query)
+    # 1. Embed Query with correct task_type
+    query_embedding = get_embedding(query, is_query=True)
     
     # 2. Retrieve from ChromaDB (increased to 15 for better coverage)
     results = query_chroma(query_embedding, n_results=15)
@@ -80,12 +98,14 @@ def rag_pipeline(query: str):
     # 3. Extract Context and deduplicate
     documents = results['documents'][0]
     distances = results['distances'][0] if 'distances' in results else [0] * len(documents)
+    metadatas = results.get('metadatas', [[]])[0]
     
     # Remove duplicates while preserving order and distances
     seen = set()
     unique_docs_with_scores = []
+    unique_metadatas = []
     
-    for doc, dist in zip(documents, distances):
+    for doc, dist, meta in zip(documents, distances, metadatas if metadatas else [{}] * len(documents)):
         # Use first 100 chars as fingerprint
         fingerprint = doc[:100]
         if fingerprint not in seen:
@@ -100,17 +120,20 @@ def rag_pipeline(query: str):
             hybrid_score = 0.7 * semantic_score + 0.3 * keyword_score
             
             unique_docs_with_scores.append((doc, hybrid_score))
+            unique_metadatas.append(meta)
     
     # Re-rank by hybrid score
-    unique_docs_with_scores.sort(key=lambda x: x[1], reverse=True)
+    ranked_items = sorted(zip(unique_docs_with_scores, unique_metadatas), 
+                         key=lambda x: x[0][1], reverse=True)
     
     # Take top 5 most relevant documents
-    top_documents = [doc for doc, score in unique_docs_with_scores[:5]]
+    top_documents = [doc for (doc, score), meta in ranked_items[:5]]
+    top_metadatas = [meta for (doc, score), meta in ranked_items[:5]]
     
     context = "\n\n---\n\n".join(top_documents)
     
-    # 4. Generate Answer
-    answer = generate_answer(query, context)
+    # 4. Generate Answer with metadata
+    answer = generate_answer(query, context, top_metadatas)
     
     return {
         "query": query,

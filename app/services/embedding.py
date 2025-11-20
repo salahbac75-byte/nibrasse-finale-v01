@@ -9,12 +9,14 @@ def configure_gemini():
         genai.configure(api_key=settings.GEMINI_API_KEY)
         _gemini_configured = True
 
-def get_embedding(text: str) -> list[float]:
+def get_embedding(text: str, is_query: bool = False) -> list[float]:
     configure_gemini()
+    # Use different task_type for queries vs documents
+    task_type = "retrieval_query" if is_query else "retrieval_document"
     result = genai.embed_content(
         model=settings.GEMINI_EMBEDDING_MODEL,
         content=text,
-        task_type="retrieval_document"
+        task_type=task_type
     )
     return result['embedding']
 
