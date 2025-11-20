@@ -1,0 +1,172 @@
+Titre : Réseaux de neurones profonds et apprentissage profond
+
+== Inspiration biologique ==
+
+Les réseaux de neurones artificiels s’inspirent du fonctionnement simplifié du cerveau
+humain. Un neurone artificiel reçoit plusieurs entrées pondérées, calcule une somme,
+applique une fonction d’activation non linéaire et produit une sortie. En reliant un grand
+nombre de neurones en couches successives, on obtient un réseau capable de modéliser des
+relations très complexes entre données d’entrée et de sortie.
+
+== Architecture profonde ==
+
+On parle d’apprentissage profond ou deep learning lorsque le réseau comporte plusieurs
+couches cachées. Ces couches apprennent progressivement des représentations de plus en
+plus abstraites des données. Par exemple, dans une réseau de vision par ordinateur, les
+premières couches détectent des contours élémentaires tandis que les couches supérieures
+représentent des formes, des objets et des scènes complètes.
+
+== Entraînement par rétropropagation ==
+
+La rétropropagation du gradient est l’algorithme central pour entraîner les réseaux de
+neurones profonds. Il consiste à calculer l’erreur entre la sortie du réseau et la cible
+désirée, puis à propager cette erreur en sens inverse à travers le réseau pour ajuster les
+poids. L’optimisation est généralement réalisée par descente de gradient ou par des
+variantes comme Adam ou RMSProp.
+
+== Applications des réseaux profonds ==
+
+Les réseaux de neurones profonds ont révolutionné plusieurs domaines : reconnaissance
+d’images, traduction automatique, synthèse vocale, analyse de séquences biologiques, et
+plus récemment génération de texte et d’images. Leur capacité à extraire automatiquement
+des caractéristiques pertinentes a permis de surpasser de nombreuses méthodes classiques,
+à condition de disposer de données et de puissance de calcul suffisantes.
+
+== Limites et défis ==
+
+Malgré leurs succès, les réseaux de neurones profonds présentent encore de nombreuses
+limites : ils sont gourmands en énergie, difficiles à expliquer et parfois sensibles à de
+petites perturbations adversariales. La recherche actuelle s’intéresse à rendre ces
+modèles plus robustes, plus parcimonieux et plus interprétables pour les utilisateurs
+finaux et les décideurs.
+
+
+Titre : Réseaux de neurones profonds et apprentissage profond
+
+== Inspiration biologique ==
+
+Les réseaux de neurones artificiels s’inspirent du fonctionnement simplifié du cerveau
+humain. Un neurone artificiel reçoit plusieurs entrées pondérées, calcule une somme,
+applique une fonction d’activation non linéaire et produit une sortie. En reliant un grand
+nombre de neurones en couches successives, on obtient un réseau capable de modéliser des
+relations très complexes entre données d’entrée et de sortie.
+
+== Architecture profonde ==
+
+On parle d’apprentissage profond ou deep learning lorsque le réseau comporte plusieurs
+couches cachées. Ces couches apprennent progressivement des représentations de plus en
+plus abstraites des données. Par exemple, dans une réseau de vision par ordinateur, les
+premières couches détectent des contours élémentaires tandis que les couches supérieures
+représentent des formes, des objets et des scènes complètes.
+
+== Entraînement par rétropropagation ==
+
+La rétropropagation du gradient est l’algorithme central pour entraîner les réseaux de
+neurones profonds. Il consiste à calculer l’erreur entre la sortie du réseau et la cible
+désirée, puis à propager cette erreur en sens inverse à travers le réseau pour ajuster les
+poids. L’optimisation est généralement réalisée par descente de gradient ou par des
+variantes comme Adam ou RMSProp.
+
+== Applications des réseaux profonds ==
+
+Les réseaux de neurones profonds ont révolutionné plusieurs domaines : reconnaissance
+d’images, traduction automatique, synthèse vocale, analyse de séquences biologiques, et
+plus récemment génération de texte et d’images. Leur capacité à extraire automatiquement
+des caractéristiques pertinentes a permis de surpasser de nombreuses méthodes classiques,
+à condition de disposer de données et de puissance de calcul suffisantes.
+
+== Limites et défis ==
+
+Malgré leurs succès, les réseaux de neurones profonds présentent encore de nombreuses
+limites : ils sont gourmands en énergie, difficiles à expliquer et parfois sensibles à de
+petites perturbations adversariales. La recherche actuelle s’intéresse à rendre ces
+modèles plus robustes, plus parcimonieux et plus interprétables pour les utilisateurs
+finaux et les décideurs.
+
+
+Titre : Réseaux de neurones profonds et apprentissage profond
+
+== Inspiration biologique ==
+
+Les réseaux de neurones artificiels s’inspirent du fonctionnement simplifié du cerveau
+humain. Un neurone artificiel reçoit plusieurs entrées pondérées, calcule une somme,
+applique une fonction d’activation non linéaire et produit une sortie. En reliant un grand
+nombre de neurones en couches successives, on obtient un réseau capable de modéliser des
+relations très complexes entre données d’entrée et de sortie.
+
+== Architecture profonde ==
+
+On parle d’apprentissage profond ou deep learning lorsque le réseau comporte plusieurs
+couches cachées. Ces couches apprennent progressivement des représentations de plus en
+plus abstraites des données. Par exemple, dans une réseau de vision par ordinateur, les
+premières couches détectent des contours élémentaires tandis que les couches supérieures
+représentent des formes, des objets et des scènes complètes.
+
+== Entraînement par rétropropagation ==
+
+La rétropropagation du gradient est l’algorithme central pour entraîner les réseaux de
+neurones profonds. Il consiste à calculer l’erreur entre la sortie du réseau et la cible
+désirée, puis à propager cette erreur en sens inverse à travers le réseau pour ajuster les
+poids. L’optimisation est généralement réalisée par descente de gradient ou par des
+variantes comme Adam ou RMSProp.
+
+== Applications des réseaux profonds ==
+
+Les réseaux de neurones profonds ont révolutionné plusieurs domaines : reconnaissance
+d’images, traduction automatique, synthèse vocale, analyse de séquences biologiques, et
+plus récemment génération de texte et d’images. Leur capacité à extraire automatiquement
+des caractéristiques pertinentes a permis de surpasser de nombreuses méthodes classiques,
+à condition de disposer de données et de puissance de calcul suffisantes.
+
+== Limites et défis ==
+
+Malgré leurs succès, les réseaux de neurones profonds présentent encore de nombreuses
+limites : ils sont gourmands en énergie, difficiles à expliquer et parfois sensibles à de
+petites perturbations adversariales. La recherche actuelle s’intéresse à rendre ces
+modèles plus robustes, plus parcimonieux et plus interprétables pour les utilisateurs
+finaux et les décideurs.
+
+
+Titre : Réseaux de neurones profonds et apprentissage profond
+
+== Inspiration biologique ==
+
+Les réseaux de neurones artificiels s’inspirent du fonctionnement simplifié du cerveau
+humain. Un neurone artificiel reçoit plusieurs entrées pondérées, calcule une somme,
+applique une fonction d’activation non linéaire et produit une sortie. En reliant un grand
+nombre de neurones en couches successives, on obtient un réseau capable de modéliser des
+relations très complexes entre données d’entrée et de sortie.
+
+== Architecture profonde ==
+
+On parle d’apprentissage profond ou deep learning lorsque le réseau comporte plusieurs
+couches cachées. Ces couches apprennent progressivement des représentations de plus en
+plus abstraites des données. Par exemple, dans une réseau de vision par ordinateur, les
+premières couches détectent des contours élémentaires tandis que les couches supérieures
+représentent des formes, des objets et des scènes complètes.
+
+== Entraînement par rétropropagation ==
+
+La rétropropagation du gradient est l’algorithme central pour entraîner les réseaux de
+neurones profonds. Il consiste à calculer l’erreur entre la sortie du réseau et la cible
+désirée, puis à propager cette erreur en sens inverse à travers le réseau pour ajuster les
+poids. L’optimisation est généralement réalisée par descente de gradient ou par des
+variantes comme Adam ou RMSProp.
+
+== Applications des réseaux profonds ==
+
+Les réseaux de neurones profonds ont révolutionné plusieurs domaines : reconnaissance
+d’images, traduction automatique, synthèse vocale, analyse de séquences biologiques, et
+plus récemment génération de texte et d’images. Leur capacité à extraire automatiquement
+des caractéristiques pertinentes a permis de surpasser de nombreuses méthodes classiques,
+à condition de disposer de données et de puissance de calcul suffisantes.
+
+== Limites et défis ==
+
+Malgré leurs succès, les réseaux de neurones profonds présentent encore de nombreuses
+limites : ils sont gourmands en énergie, difficiles à expliquer et parfois sensibles à de
+petites perturbations adversariales. La recherche actuelle s’intéresse à rendre ces
+modèles plus robustes, plus parcimonieux et plus interprétables pour les utilisateurs
+finaux et les décideurs.
+
+

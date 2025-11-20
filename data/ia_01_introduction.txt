@@ -1,0 +1,208 @@
+Titre : Introduction générale à l’intelligence artificielle
+
+== Définition de l’IA ==
+
+L’intelligence artificielle, souvent abrégée en IA, désigne l’ensemble des méthodes, des
+modèles et des systèmes informatiques capables de réaliser des tâches qui, habituellement,
+nécessitent l’intelligence humaine. Ces tâches incluent la perception, la compréhension du
+langage, la prise de décision, la résolution de problèmes et l’apprentissage à partir de
+données. Dans un contexte pratique, un système d’IA peut analyser de grandes quantités
+d’informations, identifier des motifs cachés et proposer des recommandations adaptées à
+une situation précise.
+
+== Brève histoire ==
+
+L’histoire de l’intelligence artificielle commence officiellement dans les années 1950
+avec des chercheurs comme Alan Turing, John McCarthy et Marvin Minsky. Dès le début,
+l’objectif était d’explorer la possibilité pour une machine de penser, de raisonner et
+d’apprendre. Après une première phase d’enthousiasme, le domaine a connu plusieurs
+périodes de stagnation que l’on appelle les ‘hivers de l’IA’. Le renouveau actuel est lié
+à la disponibilité de données massives, à la puissance de calcul des processeurs modernes
+et aux progrès de l’apprentissage automatique.
+
+== Domaines d’application ==
+
+Aujourd’hui, l’IA intervient dans de nombreux domaines : la santé pour aider au diagnostic
+médical, la finance pour évaluer les risques de crédit, les transports pour la conduite
+autonome, l’industrie pour l’optimisation de la production, ou encore les services en
+ligne pour la recommandation de contenus et la détection de fraudes. Chaque application
+repose sur des algorithmes spécifiques et des données adaptées au contexte d’utilisation.
+L’IA n’est donc pas une technologie unique, mais un ensemble de techniques qui
+s’assemblent différemment selon les problèmes à résoudre.
+
+== IA faible et IA forte ==
+
+On distingue souvent l’IA faible, ou étroite, de l’IA forte, ou générale. L’IA faible se
+concentre sur des tâches précises, comme reconnaître des visages sur une image ou prédire
+la demande d’un produit. Elle domine largement le paysage actuel et alimente la quasi-
+totalité des produits commerciaux. L’IA forte, en revanche, renvoie à une machine capable
+d’exhiber une intelligence générale comparable à celle d’un humain, avec flexibilité,
+créativité et conscience de soi. Cette forme d’IA reste à l’état de recherche théorique et
+soulève de nombreuses questions philosophiques et éthiques.
+
+== Rôle des données ==
+
+Les données constituent le carburant principal de l’IA moderne. Plus un système dispose de
+données pertinentes, mieux il peut apprendre des modèles fiables. Cependant, la qualité
+des données est tout aussi importante que la quantité. Des données incomplètes, biaisées
+ou mal annotées conduisent à des modèles défaillants qui peuvent produire des résultats
+injustes ou incohérents. La gestion du cycle de vie des données – collecte, nettoyage,
+anonymisation, stockage et mise à jour – est donc au cœur de tout projet d’IA sérieux.
+
+
+Titre : Introduction générale à l’intelligence artificielle
+
+== Définition de l’IA ==
+
+L’intelligence artificielle, souvent abrégée en IA, désigne l’ensemble des méthodes, des
+modèles et des systèmes informatiques capables de réaliser des tâches qui, habituellement,
+nécessitent l’intelligence humaine. Ces tâches incluent la perception, la compréhension du
+langage, la prise de décision, la résolution de problèmes et l’apprentissage à partir de
+données. Dans un contexte pratique, un système d’IA peut analyser de grandes quantités
+d’informations, identifier des motifs cachés et proposer des recommandations adaptées à
+une situation précise.
+
+== Brève histoire ==
+
+L’histoire de l’intelligence artificielle commence officiellement dans les années 1950
+avec des chercheurs comme Alan Turing, John McCarthy et Marvin Minsky. Dès le début,
+l’objectif était d’explorer la possibilité pour une machine de penser, de raisonner et
+d’apprendre. Après une première phase d’enthousiasme, le domaine a connu plusieurs
+périodes de stagnation que l’on appelle les ‘hivers de l’IA’. Le renouveau actuel est lié
+à la disponibilité de données massives, à la puissance de calcul des processeurs modernes
+et aux progrès de l’apprentissage automatique.
+
+== Domaines d’application ==
+
+Aujourd’hui, l’IA intervient dans de nombreux domaines : la santé pour aider au diagnostic
+médical, la finance pour évaluer les risques de crédit, les transports pour la conduite
+autonome, l’industrie pour l’optimisation de la production, ou encore les services en
+ligne pour la recommandation de contenus et la détection de fraudes. Chaque application
+repose sur des algorithmes spécifiques et des données adaptées au contexte d’utilisation.
+L’IA n’est donc pas une technologie unique, mais un ensemble de techniques qui
+s’assemblent différemment selon les problèmes à résoudre.
+
+== IA faible et IA forte ==
+
+On distingue souvent l’IA faible, ou étroite, de l’IA forte, ou générale. L’IA faible se
+concentre sur des tâches précises, comme reconnaître des visages sur une image ou prédire
+la demande d’un produit. Elle domine largement le paysage actuel et alimente la quasi-
+totalité des produits commerciaux. L’IA forte, en revanche, renvoie à une machine capable
+d’exhiber une intelligence générale comparable à celle d’un humain, avec flexibilité,
+créativité et conscience de soi. Cette forme d’IA reste à l’état de recherche théorique et
+soulève de nombreuses questions philosophiques et éthiques.
+
+== Rôle des données ==
+
+Les données constituent le carburant principal de l’IA moderne. Plus un système dispose de
+données pertinentes, mieux il peut apprendre des modèles fiables. Cependant, la qualité
+des données est tout aussi importante que la quantité. Des données incomplètes, biaisées
+ou mal annotées conduisent à des modèles défaillants qui peuvent produire des résultats
+injustes ou incohérents. La gestion du cycle de vie des données – collecte, nettoyage,
+anonymisation, stockage et mise à jour – est donc au cœur de tout projet d’IA sérieux.
+
+
+Titre : Introduction générale à l’intelligence artificielle
+
+== Définition de l’IA ==
+
+L’intelligence artificielle, souvent abrégée en IA, désigne l’ensemble des méthodes, des
+modèles et des systèmes informatiques capables de réaliser des tâches qui, habituellement,
+nécessitent l’intelligence humaine. Ces tâches incluent la perception, la compréhension du
+langage, la prise de décision, la résolution de problèmes et l’apprentissage à partir de
+données. Dans un contexte pratique, un système d’IA peut analyser de grandes quantités
+d’informations, identifier des motifs cachés et proposer des recommandations adaptées à
+une situation précise.
+
+== Brève histoire ==
+
+L’histoire de l’intelligence artificielle commence officiellement dans les années 1950
+avec des chercheurs comme Alan Turing, John McCarthy et Marvin Minsky. Dès le début,
+l’objectif était d’explorer la possibilité pour une machine de penser, de raisonner et
+d’apprendre. Après une première phase d’enthousiasme, le domaine a connu plusieurs
+périodes de stagnation que l’on appelle les ‘hivers de l’IA’. Le renouveau actuel est lié
+à la disponibilité de données massives, à la puissance de calcul des processeurs modernes
+et aux progrès de l’apprentissage automatique.
+
+== Domaines d’application ==
+
+Aujourd’hui, l’IA intervient dans de nombreux domaines : la santé pour aider au diagnostic
+médical, la finance pour évaluer les risques de crédit, les transports pour la conduite
+autonome, l’industrie pour l’optimisation de la production, ou encore les services en
+ligne pour la recommandation de contenus et la détection de fraudes. Chaque application
+repose sur des algorithmes spécifiques et des données adaptées au contexte d’utilisation.
+L’IA n’est donc pas une technologie unique, mais un ensemble de techniques qui
+s’assemblent différemment selon les problèmes à résoudre.
+
+== IA faible et IA forte ==
+
+On distingue souvent l’IA faible, ou étroite, de l’IA forte, ou générale. L’IA faible se
+concentre sur des tâches précises, comme reconnaître des visages sur une image ou prédire
+la demande d’un produit. Elle domine largement le paysage actuel et alimente la quasi-
+totalité des produits commerciaux. L’IA forte, en revanche, renvoie à une machine capable
+d’exhiber une intelligence générale comparable à celle d’un humain, avec flexibilité,
+créativité et conscience de soi. Cette forme d’IA reste à l’état de recherche théorique et
+soulève de nombreuses questions philosophiques et éthiques.
+
+== Rôle des données ==
+
+Les données constituent le carburant principal de l’IA moderne. Plus un système dispose de
+données pertinentes, mieux il peut apprendre des modèles fiables. Cependant, la qualité
+des données est tout aussi importante que la quantité. Des données incomplètes, biaisées
+ou mal annotées conduisent à des modèles défaillants qui peuvent produire des résultats
+injustes ou incohérents. La gestion du cycle de vie des données – collecte, nettoyage,
+anonymisation, stockage et mise à jour – est donc au cœur de tout projet d’IA sérieux.
+
+
+Titre : Introduction générale à l’intelligence artificielle
+
+== Définition de l’IA ==
+
+L’intelligence artificielle, souvent abrégée en IA, désigne l’ensemble des méthodes, des
+modèles et des systèmes informatiques capables de réaliser des tâches qui, habituellement,
+nécessitent l’intelligence humaine. Ces tâches incluent la perception, la compréhension du
+langage, la prise de décision, la résolution de problèmes et l’apprentissage à partir de
+données. Dans un contexte pratique, un système d’IA peut analyser de grandes quantités
+d’informations, identifier des motifs cachés et proposer des recommandations adaptées à
+une situation précise.
+
+== Brève histoire ==
+
+L’histoire de l’intelligence artificielle commence officiellement dans les années 1950
+avec des chercheurs comme Alan Turing, John McCarthy et Marvin Minsky. Dès le début,
+l’objectif était d’explorer la possibilité pour une machine de penser, de raisonner et
+d’apprendre. Après une première phase d’enthousiasme, le domaine a connu plusieurs
+périodes de stagnation que l’on appelle les ‘hivers de l’IA’. Le renouveau actuel est lié
+à la disponibilité de données massives, à la puissance de calcul des processeurs modernes
+et aux progrès de l’apprentissage automatique.
+
+== Domaines d’application ==
+
+Aujourd’hui, l’IA intervient dans de nombreux domaines : la santé pour aider au diagnostic
+médical, la finance pour évaluer les risques de crédit, les transports pour la conduite
+autonome, l’industrie pour l’optimisation de la production, ou encore les services en
+ligne pour la recommandation de contenus et la détection de fraudes. Chaque application
+repose sur des algorithmes spécifiques et des données adaptées au contexte d’utilisation.
+L’IA n’est donc pas une technologie unique, mais un ensemble de techniques qui
+s’assemblent différemment selon les problèmes à résoudre.
+
+== IA faible et IA forte ==
+
+On distingue souvent l’IA faible, ou étroite, de l’IA forte, ou générale. L’IA faible se
+concentre sur des tâches précises, comme reconnaître des visages sur une image ou prédire
+la demande d’un produit. Elle domine largement le paysage actuel et alimente la quasi-
+totalité des produits commerciaux. L’IA forte, en revanche, renvoie à une machine capable
+d’exhiber une intelligence générale comparable à celle d’un humain, avec flexibilité,
+créativité et conscience de soi. Cette forme d’IA reste à l’état de recherche théorique et
+soulève de nombreuses questions philosophiques et éthiques.
+
+== Rôle des données ==
+
+Les données constituent le carburant principal de l’IA moderne. Plus un système dispose de
+données pertinentes, mieux il peut apprendre des modèles fiables. Cependant, la qualité
+des données est tout aussi importante que la quantité. Des données incomplètes, biaisées
+ou mal annotées conduisent à des modèles défaillants qui peuvent produire des résultats
+injustes ou incohérents. La gestion du cycle de vie des données – collecte, nettoyage,
+anonymisation, stockage et mise à jour – est donc au cœur de tout projet d’IA sérieux.
+
+
