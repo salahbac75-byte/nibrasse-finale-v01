@@ -170,31 +170,39 @@ async function sendMessage() {
         });
 
         if (!response.ok) {
-            throw new Error('فشل الاستعلام');
+            const errorData = await response.json().catch(() => ({ detail: 'فشل الاستعلام' }));
+            throw new Error(errorData.detail || 'فشل الاستعلام');
         }
 
         const result = await response.json();
-
         loadingMsg.remove();
 
-        // Extract citation numbers from answer
-        const citationPattern = /\[(\d+)\]/g;
-        const citations = new Set();
-        let match;
-        while ((match = citationPattern.exec(result.answer)) !== null) {
-            citations.add(parseInt(match[1]));
-        }
-
         // Filter to show only cited sources
+        const citations = result.answer.match(/\[(\d+)\]/g) || [];
         const citedSources = [];
-        citations.forEach(num => {
-            if (num > 0 && num <= result.context.length) {
-                citedSources.push({
-                    number: num,
-                    content: result.context[num - 1]
-                });
-            }
-        });
+
+        if (result.context && result.metadatas) {
+            citations.forEach(citationStr => {
+                const num = parseInt(citationStr.replace('[', '').replace(']', ''));
+
+                if (!isNaN(num) && num > 0 && num <= result.context.length) {
+                    // Get metadata if available
+                    const metadata = result.metadatas[num - 1] || {};
+                    const filename = metadata.filename || 'مصدر';
+                    // Clean up filename (remove extension and underscores)
+                    const title = filename.replace('.txt', '').replace(/_/g, ' ').replace(/-/g, ' ');
+
+                    // Avoid duplicates
+                    if (!citedSources.some(s => s.number === num)) {
+                        citedSources.push({
+                            number: num,
+                            content: result.context[num - 1],
+                            title: title
+                        });
+                    }
+                }
+            });
+        }
 
         citedSources.sort((a, b) => a.number - b.number);
 
@@ -205,12 +213,9 @@ async function sendMessage() {
                 <details class="context-preview">
                     <summary>عرض المصادر المستخدمة (${citedSources.length})</summary>
                     ${citedSources.map(source => {
-                const titleMatch = source.content.match(/العنوان:\s*([^\n]+)/);
-                const title = titleMatch ? titleMatch[1] : 'مصدر';
-
                 return `
                             <div style="margin-top: 0.75rem; padding: 0.75rem; background: var(--bg-primary); border-radius: 6px; border-right: 3px solid var(--accent-primary);">
-                                <strong style="color: var(--accent-primary);">[${source.number}] ${title}</strong><br>
+                                <strong style="color: var(--accent-primary);">[${source.number}] ${source.title}</strong><br>
                                 <span style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; display: block;">
                                     ${source.content.substring(0, 250)}...
                                 </span>
@@ -231,7 +236,7 @@ async function sendMessage() {
     } catch (error) {
         console.error('Query error:', error);
         loadingMsg.remove();
-        addMessage('assistant', 'عذراً، حدث خطأ أثناء معالجة سؤالك. يرجى المحاولة مرة أخرى.');
+        addMessage('assistant', `عذراً، حدث خطأ: ${error.message}`);
     }
 }
 

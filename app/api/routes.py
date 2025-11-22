@@ -20,5 +20,13 @@ async def get_documents():
 
 @router.post("/query")
 async def query_rag(query: str = Body(..., embed=True)):
-    result = rag_pipeline(query)
-    return result
+    try:
+        print(f"Received query: {query}")
+        result = rag_pipeline(query)
+        return result
+    except Exception as e:
+        print(f"❌ API Error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        from fastapi import HTTPException
+        raise HTTPException(status_code=500, detail=str(e))

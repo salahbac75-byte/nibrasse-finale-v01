@@ -20,6 +20,8 @@ app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 app.include_router(api_router, prefix="/api")
 
+from fastapi.responses import FileResponse
+
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to RAG Arabic Supabase API"}
+    return FileResponse('frontend/index.html')

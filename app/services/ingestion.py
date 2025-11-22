@@ -31,8 +31,8 @@ def chunk_text(text: str) -> list[str]:
     Optimized for Arabic text with smaller, more focused chunks.
     """
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=800,  # Reduced for more focused chunks
-        chunk_overlap=150,  # Reduced overlap
+        chunk_size=512,  # Optimized for better context recall
+        chunk_overlap=150,  # Increased overlap to prevent context loss
         separators=["\n\n", "\n", "。", ".", " ", ""],
         length_function=len,
     )
@@ -69,6 +69,16 @@ def process_document(file_path: str):
     
     # 5. Store Chunks in Supabase
     insert_chunks_records(supabase_chunks_data)
+    
+    # 6. Update BM25 Index
+    # Note: This is inefficient for large datasets as it rebuilds the index every time.
+    # For production, consider a more incremental approach or periodic rebuilds.
+    from app.services.bm25_service import bm25_service
+    
+    # We need to add the new chunks to the existing corpus and rebuild
+    current_corpus = bm25_service.corpus + chunks
+    current_metadatas = bm25_service.metadatas + metadatas
+    bm25_service.build_index(current_corpus, current_metadatas)
     
     return {
         "file_path": file_path,

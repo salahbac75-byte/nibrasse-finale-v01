@@ -211,41 +211,51 @@ def rag_pipeline(query: str):
         query_embedding = get_embedding(q, is_query=True)
         
         # Retrieve from ChromaDB
-        results = query_chroma(query_embedding, n_results=10)
+        results = query_chroma(query_embedding, n_results=20)
         
         # Collect results
         all_documents.extend(results['documents'][0])
         all_distances.extend(results['distances'][0] if 'distances' in results else [0] * len(results['documents'][0]))
         all_metadatas.extend(results.get('metadatas', [[]])[0] if results.get('metadatas') else [{}] * len(results['documents'][0]))
     
-    # 3. Deduplicate and score
-    seen = set()
-    unique_docs_with_scores = []
-    unique_metadatas = []
+    # 3. Hybrid Search (Vector + BM25) with Reciprocal Rank Fusion (RRF)
+    from app.services.bm25_service import bm25_service
     
-    for doc, dist, meta in zip(all_documents, all_distances, all_metadatas):
-        # Use first 100 chars as fingerprint
-        fingerprint = doc[:100]
-        if fingerprint not in seen:
-            seen.add(fingerprint)
-            
-            # Calculate hybrid score using ORIGINAL query
-            semantic_score = 1.0 / (1.0 + dist) if dist > 0 else 1.0
-            keyword_score = calculate_relevance_score(query, doc)
-            
-            # Weighted combination (70% semantic, 30% keyword)
-            hybrid_score = 0.7 * semantic_score + 0.3 * keyword_score
-            
-            unique_docs_with_scores.append((doc, hybrid_score))
-            unique_metadatas.append(meta)
+    # Get BM25 results (Increased to 20 to capture more candidates)
+    bm25_results = bm25_service.search(query, top_k=20)
     
-    # 4. Re-rank by hybrid score
-    ranked_items = sorted(zip(unique_docs_with_scores, unique_metadatas), 
-                         key=lambda x: x[0][1], reverse=True)
+    # RRF Constants
+    k = 60
+    doc_scores = {}
+    doc_metadatas = {}
     
-    # Take top 10 for re-ranking
-    top_10_documents = [doc for (doc, score), meta in ranked_items[:10]]
-    top_10_metadatas = [meta for (doc, score), meta in ranked_items[:10]]
+    # Process Vector Results (Weight: 0.3)
+    vector_weight = 0.3
+    for rank, (doc, dist, meta) in enumerate(zip(all_documents, all_distances, all_metadatas)):
+        if doc not in doc_scores:
+            doc_scores[doc] = 0
+            doc_metadatas[doc] = meta
+        # Vector rank contribution
+        doc_scores[doc] += vector_weight * (1 / (k + rank + 1))
+        
+    # Process BM25 Results (Weight: 0.7)
+    bm25_weight = 0.7
+    for rank, (doc, score, meta) in enumerate(bm25_results):
+        if doc not in doc_scores:
+            doc_scores[doc] = 0
+            doc_metadatas[doc] = meta
+        # BM25 rank contribution
+        doc_scores[doc] += bm25_weight * (1 / (k + rank + 1))
+    
+    # Sort by RRF score
+    ranked_items = sorted(doc_scores.items(), key=lambda x: x[1], reverse=True)
+    
+    # Take top 15 for re-ranking (Optimized for speed/accuracy balance)
+    top_10_documents = [doc for doc, score in ranked_items[:15]]
+    top_10_metadatas = [doc_metadatas[doc] for doc, score in ranked_items[:15]]
+    
+    # Create a map of chunk -> metadata for reliable retrieval
+    chunk_to_meta = {doc: meta for doc, meta in zip(top_10_documents, top_10_metadatas)}
     
     # 5. Re-rank with Gemini for better accuracy
     reranked = rerank_with_gemini(query, top_10_documents, top_k=5)
@@ -254,15 +264,9 @@ def rag_pipeline(query: str):
     final_documents = []
     final_metadatas = []
     for chunk, score in reranked:
-        # Find index in top_10
-        try:
-            idx = top_10_documents.index(chunk)
-            final_documents.append(chunk)
-            final_metadatas.append(top_10_metadatas[idx])
-        except ValueError:
-            # Fallback if not found
-            final_documents.append(chunk)
-            final_metadatas.append({})
+        final_documents.append(chunk)
+        # Retrieve metadata using the map, defaulting to empty dict if not found (unlikely)
+        final_metadatas.append(chunk_to_meta.get(chunk, {}))
     
     context = "\n\n---\n\n".join(final_documents)
     
@@ -272,6 +276,7 @@ def rag_pipeline(query: str):
     return {
         "query": query,
         "context": final_documents,
+        "metadatas": final_metadatas,
         "answer": answer
     }
 
