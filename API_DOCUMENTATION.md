@@ -54,7 +54,8 @@ curl -X POST http://localhost:8000/api/query \
 {
   "query": "ما دور الإعلام في تشكيل الوعي؟",
   "context": ["chunk1", "chunk2", ...],
-  "answer": "يلعب الإعلام دورًا محوريًا...\n\n**المراجع:**\n[1] الإعلام والوعي المجتمعي"
+  "metadatas": [{"filename": "file1.txt"}, ...],
+  "answer": "يلعب الإعلام دورًا محوريًا...\n\n\"الاقتباس الكامل\"\n[1]\n\n**المراجع:**\n[1] الإعلام والوعي المجتمعي"
 }
 ```
 
@@ -107,6 +108,45 @@ After initial retrieval, the system uses Gemini AI to:
 1. Evaluate each chunk's relevance (0-10 score)
 2. Re-rank based on semantic understanding
 3. Return top 5 most relevant chunks
+
+## Answer Format
+
+The system generates academic-style answers with the following structure:
+
+### Structure
+```
+[Introduction without title - 1-2 lines]
+
+[Paragraph with explanation and context]
+"Complete citation from source"
+[1]
+
+[Another paragraph]
+"Another citation"
+[2]
+
+**References:**
+[1] Source title
+[2] Another source title
+```
+
+### Key Features
+- ✅ **No internal headings** - Clean, direct text
+- ✅ **Separated references** - `[N]` on new line after citation (via post-processing)
+- ✅ **Contextual citations** - Full quotes integrated in paragraphs
+- ✅ **Reference list** - Clear source attribution at the end
+- ❌ **No "Complete Citations" section** - Removed for brevity
+
+### Example (Arabic)
+```
+تمثل البيانات التدريبية حجر الأساس في بناء أنظمة الذكاء الاصطناعي.
+
+تُعد جودة البيانات العامل الأساسي في تحديد الأداء. "تُعتبر البيانات التدريبية من أهم العناصر التي تؤثر على أداء النماذج"
+[1]
+
+**المراجع:**
+[1] أساسيات الذكاء الاصطناعي
+```
 
 ## Performance
 - **Accuracy:** 100% (7/7 test questions)
@@ -214,11 +254,18 @@ python test_multilingual.py
 
 ## Version History
 
-### v2.0.0 (Current)
+### v2.1.0 (Current - 23 Nov 2025)
+- ✅ Separated references on new lines
+- ✅ Removed "Complete Citations" section
+- ✅ Post-processing for cleaner format
+- ✅ Shorter, more concise answers
+
+### v2.0.0 (22 Nov 2025)
 - ✅ 100% accuracy
 - ✅ Multilingual support (AR, FR, EN)
 - ✅ Query expansion
 - ✅ Gemini re-ranking
+- ✅ Academic answer format
 
 ### v1.1.0
 - ✅ Improved chunking

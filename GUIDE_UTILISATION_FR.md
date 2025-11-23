@@ -157,19 +157,21 @@ How does AI impact society?
 ### 3. Comprendre la réponse
 
 Chaque réponse contient:
-- **Introduction** - Contexte de la question
-- **Réponse principale** - Information détaillée avec citations [1], [2], etc.
-- **Références** - Liste des sources utilisées
+- **Introduction** - Contexte de la question (sans titre)
+- **Paragraphes détaillés** - Information avec citations complètes
+- **Références [N]** - Sur une ligne séparée après chaque citation
+- **Liste des références** - Sources utilisées à la fin
 
 **Exemple de réponse:**
 ```
 Les principaux risques liés aux biais dans les systèmes d'IA 
 résident dans leur capacité à reproduire et amplifier les 
-inégalités existantes [1].
+inégalités existantes.
 
 Les biais présents dans les données de formation constituent 
-l'un des défis éthiques majeurs [1]. Si ces données reflètent 
-des inégalités sociales, le système peut les perpétuer [1].
+l'un des défis éthiques majeurs. "Si ces données reflètent 
+des inégalités sociales, le système peut les perpétuer"
+[1]
 
 **Références:**
 [1] Enjeux éthiques et impact sociétal de l'IA
