@@ -44,38 +44,35 @@ def process_document(file_path: str):
     chunks = chunk_text(content)
     filename = os.path.basename(file_path)
     
-    # 1. Store Document in Supabase
+    # 1. Store Document in Supabase v2
     doc_record = insert_document_record(filename, len(chunks))
     doc_id = doc_record['id']
     
     # 2. Generate Embeddings
     embeddings = get_batch_embeddings(chunks)
     
-    # 3. Prepare Data for Chroma and Supabase
+    # 3. Prepare Data for Supabase v2
+    import uuid
     chroma_ids = [str(uuid.uuid4()) for _ in chunks]
-    metadatas = [{"document_id": doc_id, "chunk_index": i, "filename": filename} for i in range(len(chunks))]
+    metadatas = [{
+        "document_id": doc_id, 
+        "chunk_index": i, 
+        "filename": filename
+    } for i in range(len(chunks))]
     
-    supabase_chunks_data = []
-    for i, chunk in enumerate(chunks):
-        supabase_chunks_data.append({
-            "document_id": doc_id,
-            "chunk_index": i,
-            "content": chunk,
-            "embedding_id": chroma_ids[i]
-        })
-        
-    # 4. Store in ChromaDB
-    add_documents_to_chroma(ids=chroma_ids, documents=chunks, metadatas=metadatas, embeddings=embeddings)
+    # 4. ✅ استخدام الكود الجديد الذي يدعم pgvector
+    from app.services.vector_store_supabase import add_documents_to_supabase
     
-    # 5. Store Chunks in Supabase
-    insert_chunks_records(supabase_chunks_data)
+    add_documents_to_supabase(
+        ids=chroma_ids,
+        documents=chunks,
+        metadatas=metadatas,
+        embeddings=embeddings
+    )
     
-    # 6. Update BM25 Index
-    # Note: This is inefficient for large datasets as it rebuilds the index every time.
-    # For production, consider a more incremental approach or periodic rebuilds.
+    # 5. Update BM25 Index
     from app.services.bm25_service import bm25_service
     
-    # We need to add the new chunks to the existing corpus and rebuild
     current_corpus = bm25_service.corpus + chunks
     current_metadatas = bm25_service.metadatas + metadatas
     bm25_service.build_index(current_corpus, current_metadatas)
