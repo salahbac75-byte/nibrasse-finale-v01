@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIBRASSE - Intelligence Artificielle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fa-solid fa-brain"></i>
+                    <span>NIBRASSE</span>
+                </div>
+                <button id="new-chat-btn" class="btn-icon" title="Nouvelle conversation">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="conversations-list" id="conversations-list">
+                <!-- Les conversations seront ajoutées ici dynamiquement -->
+                <div class="conversation-item active">
+                    <i class="fa-regular fa-message"></i>
+                    <span class="conv-title">Nouvelle conversation</span>
+                    <button class="delete-conv"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">U</div>
+                    <div class="user-info">
+                        <span class="name">Utilisateur</span>
+                        <span class="status">En ligne</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header / Banner -->
+            <header class="top-banner">
+                <div class="banner-content">
+                    <h1>NIBRASSE <span class="arabic-title">نبــراس</span></h1>
+                    <p class="slogan">L'intelligence artificielle au service de vos données - الذكاء الاصطناعي في خدمة
+                        بياناتكم</p>
+                </div>
+                <div class="header-actions">
+                    <button id="library-btn" class="btn-secondary">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Bibliothèque / المكتبة</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Chat View -->
+            <div id="chat-view" class="view-container active">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Message de bienvenue -->
+                    <div class="message system-message">
+                        <div class="message-content">
+                            <div class="welcome-card">
+                                <i class="fa-solid fa-robot pulse-icon"></i>
+                                <h2>Bienvenue sur NIBRASSE</h2>
+                                <h2 class="arabic-text">مرحباً بكم في نبــراس</h2>
+                                <p>Je suis votre assistant IA. Posez-moi des questions sur vos documents.</p>
+                                <p class="arabic-text">أنا مساعدك الذكي. اسألني عن مستنداتك.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <div class="input-wrapper">
+                        <textarea id="user-input" placeholder="Posez votre question... / اطرح سؤالك..."
+                            rows="1"></textarea>
+                        <button id="send-btn" class="btn-primary btn-icon-only">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Library View -->
+            <div id="library-view" class="view-container hidden">
+                <div class="library-header">
+                    <h2>Bibliothèque de Documents <span class="arabic-text">مكتبة المستندات</span></h2>
+                    <button id="back-to-chat-btn" class="btn-text">
+                        <i class="fa-solid fa-arrow-left"></i> Retour / عودة
+                    </button>
+                </div>
+
+                <div class="upload-section">
+                    <div class="drop-zone" id="drop-zone">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Glissez vos fichiers ici ou cliquez pour parcourir</p>
+                        <p class="arabic-text">سحب وإفلات الملفات هنا أو انقر للاستعراض</p>
+                        <input type="file" id="file-input" multiple accept=".txt,.pdf,.docx" hidden>
+                        <button id="browse-btn" class="btn-primary">Parcourir / استعراض</button>
+                    </div>
+                    <div id="upload-status" class="upload-status"></div>
+                </div>
+
+                <div class="documents-list-container">
+                    <table class="documents-table">
+                        <thead>
+                            <tr>
+                                <th>Nom du fichier / اسم الملف</th>
+                                <th>Date / التاريخ</th>
+                                <th>Taille / الحجم</th>
+                                <th>Statut / الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody id="documents-table-body">
+                            <!-- Les documents seront ajoutés ici -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
